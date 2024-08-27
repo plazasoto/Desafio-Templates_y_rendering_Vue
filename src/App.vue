@@ -1,37 +1,40 @@
 <template>
   <article>
-    
-  <form class="contenedor-form">
-    <label for="colorFondo">Color de Fondo</label> <br>
-    <input type="text" v-model="colorFondo" id="colorFondo"> <br>
 
-    <label for="colorTexto">Color de Texto</label> <br>
-    <input type="text" v-model="colorTexto" id="colorTexto"> <br>
+    <form class="contenedor-form">
+      <label for="colorFondo">Color de Fondo</label> <br>
+      <input type="text" v-model="colorFondo" id="colorFondo"> <br>
 
-    <label for="mostrarTexto">Mostrar Texto</label>
-    <input type="checkbox" id="mostrarTexto" v-model="mostrarTexto"> <br>
+      <label for="colorTexto">Color de Texto</label> <br>
+      <input type="text" v-model="colorTexto" id="colorTexto"> <br>
 
-    <label for="borde">Borde</label> <br>
-    <input type="range" id="borde" v-model="borde"> <br>
+      <label for="mostrarTexto">Mostrar Texto</label>
+      <input type="checkbox" id="mostrarTexto" v-model="mostrarTexto"> <br>
 
-    <label for="texto">Contenido Textual</label> <br>
-    <textarea id="texto" cols="30" rows="10" placeholder="Sample Text" v-model="contenidoTextual"></textarea> <br>
+      <label for="borde">Borde</label> <br>
+      <input type="range" id="borde" v-model="borde"> <br>
 
-    <label for="tipografia">Tipografía</label> <br>
-    <select id="tipografia" v-model="tipografia">
-      <option v-for="tipo in opcionesTipografia" :key="tipo" :value="tipo[0]" :label="tipo[1]">
-        {{ tipo[0] }}
-      </option>
-    </select> <br>
+      <label for="texto">Contenido Textual</label> <br>
+      <textarea id="texto" cols="30" rows="3" placeholder="Sample Text" v-model="contenidoTextual"></textarea> <br>
 
-    <label for="opaco">Opaco</label>
-    <input type="checkbox" id="opaco" v-model="opaco"> <br>
+      <label for="tipografia">Tipografía</label> <br>
+      <select id="tipografia" v-model="tipografia">
+        <option v-for="tipo in opcionesTipografia" :key="tipo" :value="tipo[0]" :label="tipo[1]">
+          <!-- El elemento [0] es un valor para el style 
+            y el elemento [1] contiene un nombre para mostrar en la interfaz -->
+          {{ tipo[0] }}
+        </option>
+      </select> <br>
 
-    <label>Tamaño de Letra</label> <br>
-    <div v-for="porte in opcionesTamano" :key="porte" class="inline">
-      <input type="radio" name="porteLetra" :id="porte[1]" v-model="tamanoLetra" :value="porte[0]">
-      <label :for="porte[1]">{{ porte[1] }}</label>
-    </div>
+      <label for="opaco">Opaco</label>
+      <input type="checkbox" id="opaco" v-model="opaco"> <br>
+
+      <label>Tamaño de Letra</label> <br>
+      <div v-for="porte in opcionesTamano" :key="porte" class="inline">
+        <!-- Igual que en el v-for anterior, [0] es el value y [1] es el label -->
+        <input type="radio" name="porteLetra" :id="porte[1]" v-model="tamanoLetra" :value="porte[0]">
+        <label :for="porte[1]">{{ porte[1] }}</label>
+      </div>
 
   </form>
 
@@ -87,7 +90,6 @@ export default {
     justify-content: center;
     text-align: center;
     margin: 50px;
-    /* font-family: Georgia, 'Times New Roman', Times, serif; */
   }
 
   .translucido{
@@ -104,7 +106,7 @@ export default {
     background-color: rgb(37, 1, 1); 
     color: rgb(255, 255, 255); 
     margin: 1%;
-    padding: 2%;
+    padding: 4%;
     border-radius: 5px;
   } 
 
