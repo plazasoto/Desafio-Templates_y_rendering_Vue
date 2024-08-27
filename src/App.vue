@@ -1,26 +1,122 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <article>
+  <form class="contenedor-form">
+    <label for="colorFondo">Color de Fondo</label> <br>
+    <input type="text" v-model="colorFondo" id="colorFondo"> <br>
+
+    <label for="colorTexto">Color de Texto</label> <br>
+    <input type="text" v-model="colorTexto" id="colorTexto"> <br>
+
+    <label for="mostrarTexto">Mostrar Texto</label>
+    <input type="checkbox" id="mostrarTexto" v-model="mostrarTexto"> <br>
+
+    <label for="borde">Borde</label> <br>
+    <input type="range" id="borde" v-model="borde"> <br>
+
+    <label for="texto">Contenido Textual</label> <br>
+    <textarea id="texto" cols="30" rows="10" placeholder="Sample Text" v-model="contenidoTextual"></textarea> <br>
+
+    <label for="tipografia">Tipografía</label> <br>
+    <select id="tipografia" v-model="tipografia">
+      <option v-for="tipo in opcionesTipografia" :key="tipo" :value="tipo[0]" :label="tipo[1]">
+        {{ tipo[0] }}
+      </option>
+    </select> <br>
+
+    <label for="opaco">Opaco</label>
+    <input type="checkbox" id="opaco" v-model="opaco"> <br>
+
+    <label>Tamaño de Letra</label> <br>
+<!--     <input type="radio" name="porteLetra" id="pequeño" v-model="tamanoLetra" value="x-small">
+    <label for="pequeño">Pequeño</label>
+    <input type="radio" name="porteLetra" id="mediano" v-model="tamanoLetra" value="medium">
+    <label for="mediano">Mediano</label>
+    <input type="radio" name="porteLetra" id="grande" v-model="tamanoLetra" value="xx-large">
+    <label for="grande">Grande</label> -->
+    <div v-for="porte in opcionesTamano" :key="porte">
+      <input type="radio" name="porteLetra" :id="porte[1]" v-model="tamanoLetra" :value="porte[0]">
+      <label :for="porte[1]">{{ porte[1] }}</label>
+    </div>
+
+  </form>
+
+  <div class="contenedor-figura">
+      <div class="figura"
+      :style="{ 
+        'background-color': colorFondo,
+        'color': colorTexto,
+        'border-radius': borde + 'px',
+        'font-style': tipografia,
+        'font-size': tamanoLetra,
+      }"
+      :class="{
+        translucido: !opaco,
+      }">
+        <p v-show="mostrarTexto">
+          {{ contenidoTextual }}
+        </p>
+      </div>
+  </div>
+
+  </article>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  data(){
+    return{
+      colorFondo: "green",
+      colorTexto: "white",
+      mostrarTexto: true,
+      borde: 0,
+      contenidoTextual: "Sample Text",
+      opcionesTipografia: [["normal", "Normal"], ["italic", "Cursiva"]],
+      tipografia: "normal",
+      opaco: true,
+      opcionesTamano: [["x-small", "Pequeño"], ["medium", "Mediano"], ["xx-large", "Grande"]],
+      tamanoLetra: "",
+    }
+  },
+
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
+  .figura{
+    height: 200px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 50px;
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
+  }
+
+  .translucido{
+    opacity: 0.1;
+  }
+
+  article{
+    display: flex; 
+    align-items: center;
+  }
+
+  .contenedor-form{
+    width: 40%;
+    background-color: rgb(164, 218, 200); 
+    margin: 1%;
+    padding: 2%;
+  } 
+
+  .contenedor-figura{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40%;
+    margin: 1%;
+    height: max-content;
+  }
 </style>
