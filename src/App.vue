@@ -1,5 +1,6 @@
 <template>
   <article>
+    
   <form class="contenedor-form">
     <label for="colorFondo">Color de Fondo</label> <br>
     <input type="text" v-model="colorFondo" id="colorFondo"> <br>
@@ -27,13 +28,7 @@
     <input type="checkbox" id="opaco" v-model="opaco"> <br>
 
     <label>Tamaño de Letra</label> <br>
-<!--     <input type="radio" name="porteLetra" id="pequeño" v-model="tamanoLetra" value="x-small">
-    <label for="pequeño">Pequeño</label>
-    <input type="radio" name="porteLetra" id="mediano" v-model="tamanoLetra" value="medium">
-    <label for="mediano">Mediano</label>
-    <input type="radio" name="porteLetra" id="grande" v-model="tamanoLetra" value="xx-large">
-    <label for="grande">Grande</label> -->
-    <div v-for="porte in opcionesTamano" :key="porte">
+    <div v-for="porte in opcionesTamano" :key="porte" class="inline">
       <input type="radio" name="porteLetra" :id="porte[1]" v-model="tamanoLetra" :value="porte[0]">
       <label :for="porte[1]">{{ porte[1] }}</label>
     </div>
@@ -68,15 +63,15 @@ export default {
   data(){
     return{
       colorFondo: "green",
-      colorTexto: "white",
+      colorTexto: "#ffffff",
       mostrarTexto: true,
-      borde: 0,
+      borde: 10,
       contenidoTextual: "Sample Text",
       opcionesTipografia: [["normal", "Normal"], ["italic", "Cursiva"]],
       tipografia: "normal",
       opaco: true,
       opcionesTamano: [["x-small", "Pequeño"], ["medium", "Mediano"], ["xx-large", "Grande"]],
-      tamanoLetra: "",
+      tamanoLetra: "medium",
     }
   },
 
@@ -106,9 +101,11 @@ export default {
 
   .contenedor-form{
     width: 40%;
-    background-color: rgb(164, 218, 200); 
+    background-color: rgb(37, 1, 1); 
+    color: rgb(255, 255, 255); 
     margin: 1%;
     padding: 2%;
+    border-radius: 5px;
   } 
 
   .contenedor-figura{
@@ -117,6 +114,9 @@ export default {
     justify-content: center;
     width: 40%;
     margin: 1%;
-    height: max-content;
+  }
+
+  .inline{
+    display: inline;
   }
 </style>
